@@ -1,0 +1,15 @@
+version: "3"
+services:
+  ml4t-jupyter:
+    # $(id -u):$(id -g)
+    # user: 1000:1000
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USER_ID=${USER_ID:-1000}
+        - GROUP_ID=${GROUP_ID:-1000}
+    volumes:
+      - ../:/app
+    ports:
+      - "8888:8888"
